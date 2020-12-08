@@ -68,11 +68,9 @@
 </template>
 
 <script>
-
   import { login,sendSms } from '@/api/user'
   import { Toast } from 'vant'
   import { CountDown } from 'vant'
-
   export default {
     name: 'LoginIndex',
     components: {},
@@ -107,7 +105,7 @@
           message: '登陆中...',
           forbidClick: true, // 禁止背景点击
           duration: 0
-        });
+        })
         //1.找到数据接口
         //2.封装请求方法
         //3.请求调用登陆

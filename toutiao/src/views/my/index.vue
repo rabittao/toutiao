@@ -1,6 +1,6 @@
 <template>
   <div class="my-container">
-    <van-cell-group class="my-info">
+    <van-cell-group class="my-info" v-if="user">
       <van-cell
         class="base-info"
         title="单元格"
@@ -50,11 +50,11 @@
       </van-grid>
     </van-cell-group>
 
-    <div class="not-login" >
+    <div class="not-login" v-if="!user" >
       <div @click="$router.push('/login')">
         <img class="mobile" src="./mobile.png">
       </div>
-      <div class="text">登录 / 注册</div>
+      <div class="text">登录 / 注册</div> 
     </div>
 
     <van-grid class="nav-grid mb-4" :column-num="2">
@@ -71,7 +71,7 @@
         text="历史"
       />
     </van-grid>
-
+    
     <van-cell title="消息通知" is-link to="/" />
     <van-cell class="mb-4" title="小智同学" is-link to="/" />
     <van-cell
@@ -86,7 +86,8 @@
 <script>
 
   import { mapState } from 'vuex'
-  import { getCurrentUser } from '@/api/user'
+  
+  import { getCurrentUser } from '@/api/user.js'
 
   export default {
     name: 'MyIndex',
@@ -106,8 +107,7 @@
     },
     mounted () {},
     methods: {
-
-      async loadCurrentUser(){
+      async loadCurrentUser() {
         const { data } = await getCurrentUser()
         this.currentUser = data.data
       },
